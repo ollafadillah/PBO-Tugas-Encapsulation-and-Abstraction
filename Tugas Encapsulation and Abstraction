@@ -1,0 +1,66 @@
+abstract class Shape {
+    protected String color; // Atribut untuk menyimpan warna bentuk
+
+    // Konstruktor untuk menginisialisasi warna bentuk
+    public Shape(String color) { 
+        this.color = color;
+    }
+
+    // Metode abstrak untuk menghitung luas, harus diimplementasikan di subclass
+    public abstract double getArea();
+}
+
+// Kelas Triangle sebagai subclass dari Shape, mewakili segitiga
+class Triangle extends Shape {
+    private final float base;   // Alas segitiga
+    private final float height; // Tinggi segitiga
+
+    // Konstruktor untuk menginisialisasi warna, alas, dan tinggi segitiga
+    public Triangle(String color, float base, float height) {
+        super(color); // Memanggil konstruktor dari superclass (Shape)
+        this.base = base;
+        this.height = height;
+    }
+
+    // Implementasi metode getArea() untuk menghitung luas segitiga
+    @Override
+    public double getArea() {
+        return 0.5 * base * height; // Rumus luas segitiga = 1/2 × alas × tinggi
+    }
+}
+
+// Kelas Circle sebagai subclass dari Shape, mewakili lingkaran
+class Circle extends Shape {
+    private final float radius; // Jari-jari lingkaran
+
+    // Konstruktor untuk menginisialisasi warna dan jari-jari lingkaran
+    public Circle(String color, float radius) {
+        super(color); // Memanggil konstruktor dari superclass (Shape)
+        this.radius = radius;
+    }
+
+    // Implementasi metode getArea() untuk menghitung luas lingkaran
+    @Override
+    public double getArea() {
+        return Math.PI * radius * radius; // Rumus luas lingkaran = π × r²
+    }
+}
+
+// Kelas utama untuk menjalankan program
+public class Main {
+    public static void main(String[] args) {
+        // Membuat objek Triangle dengan warna "Red", alas 14, dan tinggi 28
+        Triangle triangle = new Triangle("Red", 14, 28);
+        
+        // Membuat objek Circle dengan warna "Blue" dan jari-jari 7
+        Circle circle = new Circle("Blue", 7);
+
+        // Menampilkan informasi segitiga
+        System.out.println("Triangle Color: " + triangle.color);  // Menampilkan warna segitiga
+        System.out.println("Triangle Area: " + triangle.getArea()); // Menampilkan luas segitiga
+
+        // Menampilkan informasi lingkaran
+        System.out.println("Circle Color: " + circle.color);  // Menampilkan warna lingkaran
+        System.out.println("Circle Area: " + circle.getArea()); // Menampilkan luas lingkaran
+    }
+}
